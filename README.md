@@ -11,25 +11,35 @@
 
 ### 1. 安装声音文件
 
-将声音文件放到你的用户目录下的 `.claude\hooks\` 文件夹中：
+将声音文件放到你的用户目录下的 `.claude/hooks/` 文件夹中：
 
 - `任务已完成.wav` - 任务完成时播放的语音
 - `任务需要你的确认.wav` - 需要确认时播放的语音
 
-完整路径：`C:\Users\你的用户名\.claude\hooks\`
+**路径参考**：
+- Windows: `C:\Users\你的用户名\.claude\hooks\`
+- Linux/macOS: `~/.claude/hooks/`
 
 ### 2. 安装钩子脚本
 
-将项目中的 PowerShell 脚本复制到 `.claude\hooks\` 文件夹：
+将项目中的脚本复制到 `.claude/hooks/` 文件夹：
 
-- `notify_done.ps1` - 任务完成通知脚本
-- `notify_attention.ps1` - 需要确认通知脚本
+**Windows 用户**:
+- `notify_done.ps1`
+- `notify_attention.ps1`
+
+**Linux/macOS 用户**:
+- `notify_done.sh`
+- `notify_attention.sh`
+- 并确保脚本具有执行权限：`chmod +x ~/.claude/hooks/*.sh`
 
 ### 3. 配置 Claude Code
 
-打开 `add.tu.your.settings.json`，复制其中的 `hooks` 配置部分，粘贴到你的 Claude Code 设置文件中。
+打开 `add.tu.your.settings.json`，根据你的操作系统选择相应的 `command` 配置部分，粘贴到你的 Claude Code 设置文件中。
 
-设置文件位置：`C:\Users\你的用户名\.claude\settings.json`
+**设置文件位置**：
+- Windows: `C:\Users\你的用户名\.claude\settings.json`
+- Linux/macOS: `~/.claude/settings.json`
 
 ## 声音说明
 
@@ -49,15 +59,18 @@
 
 ## 兼容性
 
-- **操作系统**：Windows（使用 PowerShell）
-- **依赖**：无需额外依赖，使用 Windows 系统自带功能
+- **Windows**：支持 PowerShell。
+- **Linux/macOS**：支持 Bash。
+  - 依赖：优先使用 `afplay` (macOS), `aplay`/`paplay` (Linux) 播放声音。
+  - 提示音增强：如果安装了 `ffmpeg` (含有 `ffplay`)，将获得更精确的频率提示音。
 
 ## 故障排查
 
 如果声音没有播放：
 1. 确认 `.wav` 文件存在且格式正确
-2. 确认 PowerShell 脚本有执行权限
+2. 确认脚本有执行权限
 3. 检查 Claude Code 设置中的 `hooks` 配置是否正确
+4. Linux 用户确保已安装 `alsa-utils` (提供 `aplay`) 或 `pulseaudio-utils` (提供 `paplay`)
 
 ---
 

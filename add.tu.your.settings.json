@@ -1,3 +1,4 @@
+{
   "hooks": {
     "Notification": [
       {
@@ -5,7 +6,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\.claude\\hooks\\notify_attention.ps1\""
+            "// Windows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\.claude\\hooks\\notify_attention.ps1\"",
+            "// Linux/macOS": "bash $HOME/.claude/hooks/notify_attention.sh",
+            "command": "bash $HOME/.claude/hooks/notify_attention.sh"
           }
         ]
       }
@@ -16,9 +19,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\.claude\\hooks\\notify_done.ps1\""
+            "// Windows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\.claude\\hooks\\notify_done.ps1\"",
+            "// Linux/macOS": "bash $HOME/.claude/hooks/notify_done.sh",
+            "command": "bash $HOME/.claude/hooks/notify_done.sh"
           }
         ]
       }
     ]
-  },
+  }
+}
