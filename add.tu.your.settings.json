@@ -1,14 +1,27 @@
 {
   "hooks": {
-    "Notification": [
+    "PermissionRequest": [
       {
         "matcher": "*",
         "hooks": [
           {
             "type": "command",
             "// Windows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\.claude\\hooks\\notify_attention.ps1\"",
-            "// Linux/macOS": "bash $HOME/.claude/hooks/notify_attention.sh",
-            "command": "bash $HOME/.claude/hooks/notify_attention.sh"
+            "// Linux/macOS": "dash $HOME/.claude/hooks/notify_attention.sh",
+            "command": "dash $HOME/.claude/hooks/notify_attention.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt|idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "// Windows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\.claude\\hooks\\notify_attention.ps1\"",
+            "// Linux/macOS": "dash $HOME/.claude/hooks/notify_attention.sh",
+            "command": "dash $HOME/.claude/hooks/notify_attention.sh"
           }
         ]
       }
@@ -20,8 +33,8 @@
           {
             "type": "command",
             "// Windows": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"%USERPROFILE%\\.claude\\hooks\\notify_done.ps1\"",
-            "// Linux/macOS": "bash $HOME/.claude/hooks/notify_done.sh",
-            "command": "bash $HOME/.claude/hooks/notify_done.sh"
+            "// Linux/macOS": "dash $HOME/.claude/hooks/notify_done.sh",
+            "command": "dash $HOME/.claude/hooks/notify_done.sh"
           }
         ]
       }
